@@ -12,8 +12,14 @@ public class PlayerMove : MonoBehaviour
     private bool nearItem = false;
 
     //#######Public Variables #########
+    [Header("Move")]
     public float speedMovimento;
     public float speedRotation;
+
+    [Header("Prefabs")]
+    public GameObject lata;
+    public GameObject alcool;
+    public GameObject papel;
     // Start is called before the first frame update
     void Awake()
     {
@@ -57,6 +63,8 @@ public class PlayerMove : MonoBehaviour
                 go.GetComponent<Collider>().enabled = true;
 
                 this.gameObject.transform.GetChild(1).GetChild(0).transform.parent = null;
+
+                animator.SetBool("Hold",false);
                 holdItem = false;
             }
         }
@@ -85,15 +93,160 @@ public class PlayerMove : MonoBehaviour
 
                 go.transform.SetParent(this.gameObject.transform.GetChild(1));
                 go.transform.position = this.gameObject.transform.GetChild(1).position;
+
+                animator.SetBool("Hold",true);
                 holdItem = true;
             }
         }    
+    }
+
+    private void OnTriggerStay(Collider other) 
+    {
+        if(other.gameObject.CompareTag("item"))
+        {
+            Debug.Log("Colidiu Item");
+            nearItem = true;
+            if(grab)
+            {
+                grab = false;
+                Debug.Log("Pega Item");
+                //Pega item
+                GameObject go = other.gameObject;
+
+                if(other.gameObject.GetComponent<Rigidbody>() != null)
+                {
+                    Rigidbody goRb = go.GetComponent<Rigidbody>();
+                    goRb.isKinematic = true;
+                    goRb.useGravity = false;
+                }
+                go.GetComponent<Collider>().enabled = false;
+
+                go.transform.SetParent(this.gameObject.transform.GetChild(1));
+                go.transform.position = this.gameObject.transform.GetChild(1).position;
+
+                animator.SetBool("Hold",true);
+                holdItem = true;
+            }
+        }
+
+
+        else if(other.gameObject.CompareTag("caixaLata"))
+        {
+            nearItem = true;
+            if(grab)
+            {
+                grab = false;
+                GameObject go = Instantiate(lata);
+
+                if(go.gameObject.GetComponent<Rigidbody>() != null)
+                {
+                    Rigidbody goRb = go.GetComponent<Rigidbody>();
+                    goRb.isKinematic = true;
+                    goRb.useGravity = false;
+                }
+                go.GetComponent<Collider>().enabled = false;
+
+                go.transform.SetParent(this.gameObject.transform.GetChild(1));
+                go.transform.position = this.gameObject.transform.GetChild(1).position;
+
+                animator.SetBool("Hold",true);
+                holdItem = true;
+
+            }
+        }
+
+
+
+        else if(other.gameObject.CompareTag("caixaAlcool"))
+        {
+            nearItem = true;
+            if(grab)
+            {
+                grab = false;
+                GameObject go = Instantiate(alcool);
+
+                if(go.gameObject.GetComponent<Rigidbody>() != null)
+                {
+                    Rigidbody goRb = go.GetComponent<Rigidbody>();
+                    goRb.isKinematic = true;
+                    goRb.useGravity = false;
+                }
+                go.GetComponent<Collider>().enabled = false;
+
+                go.transform.SetParent(this.gameObject.transform.GetChild(1));
+                go.transform.position = this.gameObject.transform.GetChild(1).position;
+
+                animator.SetBool("Hold",true);
+                holdItem = true;
+
+            }
+        }
+
+
+
+        else if(other.gameObject.CompareTag("caixaPapel"))
+        {
+            nearItem = true;
+            if(grab)
+            {
+                grab = false;
+                GameObject go = Instantiate(papel);
+
+                if(go.gameObject.GetComponent<Rigidbody>() != null)
+                {
+                    Rigidbody goRb = go.GetComponent<Rigidbody>();
+                    goRb.isKinematic = true;
+                    goRb.useGravity = false;
+                }
+                go.GetComponent<Collider>().enabled = false;
+
+                go.transform.SetParent(this.gameObject.transform.GetChild(1));
+                go.transform.position = this.gameObject.transform.GetChild(1).position;
+
+                animator.SetBool("Hold",true);
+                holdItem = true;
+
+            }
+        }
     }
 
 
     private void OnCollisionExit(Collision other) 
     {
         if(other.gameObject.CompareTag("item"))
+        {
+            nearItem = false;
+        }
+
+        else if(other.gameObject.CompareTag("caixaLata"))
+        {
+            nearItem = false;
+        }
+
+        else if(other.gameObject.CompareTag("caixaAlcool"))
+        {
+            nearItem = false;
+        }
+
+        else if(other.gameObject.CompareTag("caixaPapel"))
+        {
+            nearItem = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        if(other.gameObject.CompareTag("item"))
+        {
+            nearItem = false;
+        }
+
+        else if(other.gameObject.CompareTag("caixaLata"))
+        {
+            nearItem = false;
+        }
+
+        else if(other.gameObject.CompareTag("caixaAlcool"))
         {
             nearItem = false;
         }

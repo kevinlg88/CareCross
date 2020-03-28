@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - item
+  - caixaLata
+  - caixaAlcool
+  - caixaPapel
   layers:
   - Default
   - TransparentFX
