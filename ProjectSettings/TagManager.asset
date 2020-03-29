@@ -8,6 +8,8 @@ TagManager:
   - caixaLata
   - caixaAlcool
   - caixaPapel
+  - caixaMask
+  - Stop
   layers:
   - Default
   - TransparentFX

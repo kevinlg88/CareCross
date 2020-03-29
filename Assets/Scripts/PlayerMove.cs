@@ -11,15 +11,19 @@ public class PlayerMove : MonoBehaviour
     private bool grab = false;
     private bool nearItem = false;
 
+    Vector3 dir;
+
     //#######Public Variables #########
     [Header("Move")]
     public float speedMovimento;
     public float speedRotation;
+    public float force;
 
     [Header("Prefabs")]
     public GameObject lata;
     public GameObject alcool;
     public GameObject papel;
+    public GameObject mascara;
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,7 +39,7 @@ public class PlayerMove : MonoBehaviour
         if(rb.velocity != Vector3.zero)
         {
             animator.SetBool("Walk",true);
-            Vector3 dir = input;
+            dir = input;
             rb.rotation = Quaternion.LookRotation(dir*-1);
         }
         else
@@ -64,6 +68,8 @@ public class PlayerMove : MonoBehaviour
 
                 this.gameObject.transform.GetChild(1).GetChild(0).transform.parent = null;
 
+                go.GetComponent<Rigidbody>().AddForce(dir*-1 * force,ForceMode.Impulse);
+
                 animator.SetBool("Hold",false);
                 holdItem = false;
             }
@@ -74,7 +80,7 @@ public class PlayerMove : MonoBehaviour
     {
         if(other.gameObject.CompareTag("item"))
         {
-            Debug.Log("Colidiu Item");
+            //Debug.Log("Colidiu Item");
             nearItem = true;
             if(grab)
             {
@@ -104,7 +110,7 @@ public class PlayerMove : MonoBehaviour
     {
         if(other.gameObject.CompareTag("item"))
         {
-            Debug.Log("Colidiu Item");
+            //Debug.Log("Colidiu Item");
             nearItem = true;
             if(grab)
             {
@@ -191,6 +197,31 @@ public class PlayerMove : MonoBehaviour
             {
                 grab = false;
                 GameObject go = Instantiate(papel);
+
+                if(go.gameObject.GetComponent<Rigidbody>() != null)
+                {
+                    Rigidbody goRb = go.GetComponent<Rigidbody>();
+                    goRb.isKinematic = true;
+                    goRb.useGravity = false;
+                }
+                go.GetComponent<Collider>().enabled = false;
+
+                go.transform.SetParent(this.gameObject.transform.GetChild(1));
+                go.transform.position = this.gameObject.transform.GetChild(1).position;
+
+                animator.SetBool("Hold",true);
+                holdItem = true;
+
+            }
+        }
+
+        else if(other.gameObject.CompareTag("caixaMask"))
+        {
+            nearItem = true;
+            if(grab)
+            {
+                grab = false;
+                GameObject go = Instantiate(mascara);
 
                 if(go.gameObject.GetComponent<Rigidbody>() != null)
                 {
