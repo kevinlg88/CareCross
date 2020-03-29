@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
     public float spawnTime;
     public GameObject people;
     public List<GameObject> spawPoints = new List<GameObject>();
+
+    public GameObject gameover;
     // Start is called before the first frame update
     int numberPeople;
     void Start()
@@ -24,6 +26,8 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("GAME OVER");
             StopAllCoroutines();
+            gameover.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 

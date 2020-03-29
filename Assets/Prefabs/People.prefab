@@ -132,7 +132,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   mascara: {fileID: 6141055600585535096}
+  placa: {fileID: 1788079407136283079}
   speed: 500
+  avatar: {fileID: 2535487155240404541}
+  colors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 1, g: 0.43259215, b: 0, a: 0}
+  - {r: 0.9786186, g: 1, b: 0, a: 0}
+  - {r: 0, g: 1, b: 0.07243514, a: 0}
+  - {r: 0, g: 1, b: 0.95938826, a: 0}
+  - {r: 0.6386528, g: 0, b: 1, a: 0}
   pedidos:
   - {fileID: 2800000, guid: b119f9ccaaecaa8418c0ba76be470383, type: 3}
   - {fileID: 2800000, guid: c4c89acee4424a64d818f1dc55cf4632, type: 3}
@@ -670,7 +679,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4532758957498553600, guid: cf8d3db4eb6b6c845bc9f83a42e45c57, type: 3}
+  - {fileID: 2100000, guid: 5da12388489b7ad45a85fb0c27ba264c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

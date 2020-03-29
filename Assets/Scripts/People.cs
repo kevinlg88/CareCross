@@ -11,11 +11,15 @@ public class People : MonoBehaviour
     public GameObject item;
 
     public GameObject mascara;
+    public GameObject placa;
     public float speed;
 
     bool canWalk;
     Vector3 stopPos;
     Quaternion stopRot;
+
+    public GameObject avatar;
+    public Color[] colors;
 
     [Header("Pedidos")]
     public Texture[] pedidos;
@@ -37,9 +41,10 @@ public class People : MonoBehaviour
 
     private void Start() 
     {
+        avatar.GetComponent<Renderer>().material.color = colors[Random.Range(0,colors.Length)];
         int random = Random.Range(0,pedidos.Length);
         this.gameObject.transform.GetChild(2).GetComponent<Renderer>().material.mainTexture = pedidos[random];
-        this.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        placa.SetActive(false);
         pedido = namePedidos[random];
         canWalk = true;
         collider.isTrigger = true;
@@ -71,7 +76,7 @@ public class People : MonoBehaviour
             {
                 FindObjectOfType<AudioManager>().Play("Impacto");
                 FindObjectOfType<AudioManager>().Play("Acertou");
-                //this.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+                Destroy(placa);
                 item = other.gameObject;
                 Destroy(other.gameObject);
                 TurnOnRagdoll();
@@ -105,11 +110,11 @@ public class People : MonoBehaviour
         }   
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) 
     {
         if(other.gameObject.CompareTag("Stop"))
         {
-            this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+            placa.SetActive(true);
             canWalk = false;
             collider.isTrigger = false;
             rigidbody.useGravity = true;
@@ -172,7 +177,7 @@ public class People : MonoBehaviour
         //rigidbody.velocity = Vector3.zero;
         //transform.position = stopPos;
         //transform.rotation = stopRot;
-        Destroy(this.gameObject,4f);
+        Destroy(this.gameObject);
 
     }
 }
