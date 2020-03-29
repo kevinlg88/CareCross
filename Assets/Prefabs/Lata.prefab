@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6646942975504875562}
   - component: {fileID: 4075505010254015432}
   m_Layer: 0
-  m_Name: Lata
+  m_Name: lata
   m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3760668243370310073}
   m_LocalRotation: {x: -0.7056513, y: -0.04534634, z: -0.045346335, w: 0.7056513}
   m_LocalPosition: {x: 5.2626677, y: 1.5833759, z: -0.5785995}
-  m_LocalScale: {x: 0.08367501, y: 0.08367501, z: 0.13081336}
+  m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

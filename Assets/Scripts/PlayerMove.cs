@@ -54,6 +54,7 @@ public class PlayerMove : MonoBehaviour
             {
                 Debug.Log("Grab True");
                 grab = true;
+                FindObjectOfType<AudioManager>().Play("Item");
             }
             else if(holdItem)
             {

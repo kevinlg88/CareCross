@@ -8,15 +8,23 @@ public class GameController : MonoBehaviour
     public GameObject people;
     public List<GameObject> spawPoints = new List<GameObject>();
     // Start is called before the first frame update
+    int numberPeople;
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Tema");
         StartCoroutine(StartSpawn());
+        StartCoroutine(Dificultar());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        numberPeople = GameObject.FindGameObjectsWithTag("npc").Length;
+        if(numberPeople > 7)
+        {
+            Debug.Log("GAME OVER");
+            StopAllCoroutines();
+        }
     }
 
     void RandomizarSpawn()
@@ -29,5 +37,16 @@ public class GameController : MonoBehaviour
         RandomizarSpawn();
         yield return new WaitForSeconds(spawnTime);
         StartCoroutine(StartSpawn());
+    }
+
+    IEnumerator Dificultar()
+    {
+        yield return new WaitForSeconds(4f);
+        spawnTime -= 0.1f;
+        if(spawnTime <= 0.5)
+        {
+            spawnTime = 0.5f;
+        }
+        StartCoroutine(Dificultar());
     }
 }
