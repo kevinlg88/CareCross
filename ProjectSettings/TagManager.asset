@@ -10,6 +10,7 @@ TagManager:
   - caixaPapel
   - caixaMask
   - Stop
+  - npc
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Post
   - 
   - 
   - 
