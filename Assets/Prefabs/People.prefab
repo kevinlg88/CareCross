@@ -133,7 +133,7 @@ MonoBehaviour:
   item: {fileID: 0}
   mascara: {fileID: 6141055600585535096}
   placa: {fileID: 1788079407136283079}
-  speed: 500
+  speed: 100
   avatar: {fileID: 2535487155240404541}
   colors:
   - {r: 1, g: 0, b: 0, a: 0}

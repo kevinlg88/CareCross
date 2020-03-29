@@ -3311,6 +3311,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1167201796199188982, guid: 84f9ff3f565b0bd428742e0f2ff85595,
         type: 3}
+    - target: {fileID: 4468672755517757478, guid: 96bffa8f3512dac4481bc8cd7edeb2ea,
+        type: 3}
+      propertyPath: speedMovimento
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 4468672755517757479, guid: 96bffa8f3512dac4481bc8cd7edeb2ea,
         type: 3}
       propertyPath: m_Center.y
