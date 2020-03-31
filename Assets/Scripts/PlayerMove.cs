@@ -35,7 +35,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        rb.velocity = input * speedMovimento *-1 * Time.deltaTime;
+        rb.velocity = input * speedMovimento *-1 * Time.fixedDeltaTime;
         if(rb.velocity != Vector3.zero)
         {
             animator.SetBool("Walk",true);

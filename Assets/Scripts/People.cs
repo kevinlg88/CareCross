@@ -56,7 +56,7 @@ public class People : MonoBehaviour
         if(canWalk)
         {
             animator.SetBool("Walk",true);
-            rigidbody.velocity = Vector3.right * speed * Time.deltaTime;
+            rigidbody.velocity = Vector3.right * speed * Time.fixedDeltaTime;
             rigidbody.rotation = Quaternion.LookRotation(Vector3.right);
         }
         if(Input.GetKeyDown(KeyCode.F))
